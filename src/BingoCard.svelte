@@ -30,18 +30,26 @@
   {#each Array(size) as _, i}
     <tr>
       {#each Array(size) as _, j}
-        <td>{privateValues[i * size + j]}</td>
-        <!-- <td>{`${i}, ${j}`}</td> -->
+        <td style:width={`${Math.round(100 / size)}%`}>
+          <div>
+            {privateValues[i * size + j]}
+          </div>
+        </td>
       {/each}
     </tr>
   {/each}
 </table>
+<div class="break" />
 
 <style>
   table {
+    width: min(768px, 100vw);
+    padding: 1em;
     table-layout: fixed;
     border-collapse: collapse;
     border: 1px solid black;
+    break-before: page;
+    break-inside: avoid-page;
   }
   thead {
     background-color: black;
@@ -54,19 +62,38 @@
   }
   td {
     text-align: center;
-    width: 85px;
-    height: 85px;
+    position: relative;
   }
+
+  .break {
+    break-after: page;
+  }
+  /* td::after {
+    content: "";
+    display: block;
+    margin-top: 100%;
+  }
+
+  td div {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    padding: 1rem 0.5rem;
+  } */
+
   th {
     color: white;
   }
   @media print {
+    @page {
+      /* size: A4 landscape; */
+    }
     table {
       width: 100%;
-      aspect-ratio: 1/1;
       margin-bottom: 1rem;
       float: left;
-      break-after: true;
     }
     th {
       color: black;

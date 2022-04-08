@@ -36,10 +36,10 @@
 <button on:click={addValue}>Submit!</button>
 <hr />
 
-{#if collapsed}
-  <button on:click={() => (collapsed = false)}>Show values</button>
-{:else}
-  <button on:click={() => (collapsed = true)}>Hide values</button>
+<button on:click={() => (collapsed = !collapsed)}
+  >{collapsed ? "Expand" : "Collapse"} values</button
+>
+{#if !collapsed}
   <ul>
     {#each $values as value, i}
       <li>

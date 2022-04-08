@@ -14,8 +14,8 @@
     <input type="number" id="numCards" bind:value={numCards} /><br />
     <label for="bingoName">Name of the Game?</label>
     <input type="text" id="bingoName" bind:value={bingoName} />
-    <label for="size">Size of the square?</label>
-    <input type="number" id="size" bind:value={size} />
+    <label for="size">Size of the card? ({size}x{size}) (at least 2)</label>
+    <input type="number" id="size" bind:value={size} min="2" />
   </div>
   <ValueList />
   <hr />
@@ -28,7 +28,9 @@
     >
   {/if}
 </main>
-{#if $values.length >= size * size}
+{#if size < 2}
+  <p>I won't generate cards that small.</p>
+{:else if $values.length >= size * size}
   <section class="cards">
     {#each Array(numCards) as _}
       <BingoCard {size} name={bingoName} />
@@ -42,7 +44,7 @@
   main {
     text-align: center;
     padding: 1em;
-    max-width: 240px;
+    max-width: 100vw;
     margin: 0 auto;
   }
 
@@ -57,14 +59,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 5em;
+    gap: 2em;
+    padding-bottom: 5em;
   }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
+  /* @media (max-width: 640px) {
+    h1 {
+      font-size: 2em;
     }
-  }
+  } */
   @media print {
     main,
     .print_button {
