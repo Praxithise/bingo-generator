@@ -59,7 +59,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    row-gap: 2em;
+    gap: 2em;
     padding-bottom: 5em;
   }
 
