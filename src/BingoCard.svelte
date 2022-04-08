@@ -39,7 +39,6 @@
     </tr>
   {/each}
 </table>
-<div class="break" />
 
 <style>
   table {
@@ -65,10 +64,7 @@
     position: relative;
   }
 
-  .break {
-    break-after: page;
-  }
-  /* td::after {
+  td::after {
     content: "";
     display: block;
     margin-top: 100%;
@@ -81,7 +77,7 @@
     align-items: center;
     inset: 0;
     padding: 1rem 0.5rem;
-  } */
+  }
 
   th {
     color: white;

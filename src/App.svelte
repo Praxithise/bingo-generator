@@ -59,15 +59,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2em;
+    row-gap: 2em;
     padding-bottom: 5em;
   }
 
-  /* @media (max-width: 640px) {
-    h1 {
-      font-size: 2em;
-    }
-  } */
   @media print {
     main,
     .print_button {

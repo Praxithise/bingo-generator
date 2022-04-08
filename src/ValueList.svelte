@@ -19,9 +19,12 @@
   function deleteValue(selectedValue) {
     $values = $values.filter((value, index) => index !== selectedValue);
   }
+
+  function clearValues() {
+    $values = [];
+  }
 </script>
 
-<h1>Values ({$values.length})</h1>
 <h2>Please enter a new value.</h2>
 
 <button on:click={() => (multi = !multi)}>{multi ? "Single" : "Multi"}</button
@@ -36,9 +39,14 @@
 <button on:click={addValue}>Submit!</button>
 <hr />
 
-<button on:click={() => (collapsed = !collapsed)}
-  >{collapsed ? "Expand" : "Collapse"} values</button
->
+<p><b>Values: {$values.length}</b></p>
+
+<button class="clear" on:click={clearValues}>Clear all values</button>
+
+<button on:click={() => (collapsed = !collapsed)}>
+  {collapsed ? "Expand" : "Collapse"} values
+</button>
+
 {#if !collapsed}
   <ul>
     {#each $values as value, i}
@@ -63,7 +71,16 @@
   .delete {
     cursor: pointer;
     font-weight: bold;
-    outline: red;
     margin-left: 10px;
+  }
+
+  button.clear {
+    background-color: darkred;
+    color: white;
+  }
+
+  button.clear:hover {
+    background-color: red;
+    outline: 2px solid white;
   }
 </style>
